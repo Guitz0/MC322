@@ -7,9 +7,10 @@ public class Heroi {
     private int energiaMaxima;
 
 
-    public Heroi(String nome, int vidaMaxima, int energia) {
+    public Heroi(String nome, int vida, int energia) {
         this.nome = nome;
-        this.vidaMaxima = vidaMaxima;
+        this.vidaMaxima = vida;
+        this.vidaAtual = vida;
         this.energiaMaxima = energia;
     }
 
