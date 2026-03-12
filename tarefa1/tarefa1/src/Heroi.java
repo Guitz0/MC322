@@ -1,15 +1,45 @@
 public class Heroi {
     private String nome;
-    private int vida;
-    private int escudo;
+    private int vidaMaxima;
+    private int vidaAtual;
+    private int escudo = 0;
+    private int energiaAtual;
+    private int energiaMaxima;
+
+
+    public Heroi(String nome, int vidaMaxima, int energia) {
+        this.nome = nome;
+        this.vidaMaxima = vidaMaxima;
+        this.energiaMaxima = energia;
+    }
 
     public String getNome() {
         return nome;
     }
 
+    public int getVidaMaxima() {
+        return vidaMaxima;
+    }
+    
+    public int getVidaAtual() {
+        return vidaAtual;
+    }
+
+    public int getEscudo() {
+        return escudo;
+    }
+
+    public int getEnergiaMaxima() {
+        return energiaMaxima;
+    }
+
+    public int getEnergiaAtual() {
+        return energiaAtual;
+    }
+
     public void receberDano(int dano) {
         if (escudo < dano)
-            vida = vida + escudo - dano;
+            vidaAtual = vidaAtual + escudo - dano;
         else
             escudo = escudo - dano;
     }
@@ -19,7 +49,7 @@ public class Heroi {
     }
 
     public boolean estaVivo() {
-        if (vida > 0)
+        if (vidaAtual > 0)
             return true;
         else
             return false;
