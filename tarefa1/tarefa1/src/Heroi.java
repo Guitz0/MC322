@@ -3,12 +3,15 @@ public class Heroi {
     private int vida;
     private int escudo;
 
+    public String getNome() {
+        return nome;
+    }
+
     public void receberDano(int dano) {
-        escudo = escudo - dano;
-        if (escudo < 0) {
-            vida = vida - escudo;
-            escudo = 0;
-        }
+        if (escudo < dano)
+            vida = vida + escudo - dano;
+        else
+            escudo = escudo - dano;
     }
 
     public void ganharEscudo(int valor) {

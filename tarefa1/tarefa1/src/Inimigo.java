@@ -4,6 +4,14 @@ public class Inimigo {
     private int escudo;
     private int dano;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public int getEscudo() {
+        return escudo;
+    }
+
     public void receberDano(int dano){
         vida = vida - dano;
     }
