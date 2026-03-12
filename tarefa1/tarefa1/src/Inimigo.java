@@ -1,17 +1,19 @@
 public class Inimigo {
     private String nome;
-    public int vida;
-    public int escudo;
+    private int vida;
+    private int escudo;
+    private int dano;
 
     public void receberDano(int dano){
-        this.vida = vida - dano;
+        vida = vida - dano;
     }
 
-    public void atacar(){
+    public void atacar(Heroi alvo){
+        alvo.receberDano(dano);
     }
 
     public boolean estaVivo(){
-        if(this.vida > 0)
+        if(vida > 0)
             return true;
         else
             return false;
