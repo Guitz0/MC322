@@ -7,18 +7,19 @@ Estrutura do Projeto
 
 O projeto segue a estrutura padrão criada pelo VSCode para projetos Java:
 
-.
-├─ src/
-│  ├─ App.java
-│  ├─ Heroi.java
-│  ├─ Inimigo.java
-│  ├─ Carta.java
-│  ├─ CartaDano.java
-│  ├─ CartaEscudo.java
-│  └─ ...
-├─ lib/
-├─ bin/
-└─ README.md
+    .
+    ├─ src/
+    │  ├─ App.java
+    │  ├─ Heroi.java
+    │  ├─ Inimigo.java
+    │  ├─ Carta.java
+    │  ├─ CartaDano.java
+    │  ├─ CartaEscudo.java
+    │  └─ ...
+    ├─ lib/
+    ├─ bin/
+    └─ README.md
+
 
 Onde:
 
@@ -41,8 +42,8 @@ Isso iniciará o programa e o sistema de combate será executado no terminal.
 Como Jogar
 
 Durante o combate:
-    O jogador possui um baralho de cartas
-    No início de cada turno, cartas são compradas para a mão
+  
+    No início de cada turno, voce pode atacar ou usar um escudo
     Cada carta possui um custo de energia
     O jogador pode usar cartas enquanto tiver energia disponível
     Ao final do turno do jogador, os inimigos realizam suas ações
@@ -63,3 +64,4 @@ Autores
 Projeto desenvolvido por:
 
     Primeiro Guilherme Silva de Paula, RA 115832
+
