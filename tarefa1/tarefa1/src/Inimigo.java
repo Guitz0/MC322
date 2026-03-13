@@ -29,6 +29,10 @@ public class Inimigo {
         return escudo;
     }
 
+    public int getDano() {
+        return dano;
+    }
+    
     public void receberDano(int dano) {
         vidaAtual = vidaAtual - dano;
     }
