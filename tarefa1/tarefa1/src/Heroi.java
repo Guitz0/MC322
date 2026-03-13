@@ -12,6 +12,7 @@ public class Heroi {
         this.vidaMaxima = vida;
         this.vidaAtual = vida;
         this.energiaMaxima = energia;
+        this.energiaAtual = energia;
     }
 
     public String getNome() {
@@ -54,5 +55,9 @@ public class Heroi {
             return true;
         else
             return false;
+    }
+
+    public void usarEnergia(int custo){
+        energiaAtual = energiaAtual - custo;
     }
 }
