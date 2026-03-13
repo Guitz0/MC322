@@ -11,22 +11,26 @@ public class App {
         CartaDano cartaDano = new CartaDano("Espada", 1, 5);
         CartaEscudo cartaEscudo = new CartaEscudo("Escudo", 1, 6);
 
-        System.out.println("========================================");
-        System.out.println(heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)"
-                + " (" + heroi.getEscudo() + " de escudo)");
-        System.out.println("vs");
-        System.out.println(inimigo.getNome() + " (" + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima()
-                + " de vida)" + " (" + inimigo.getEscudo() + " de escudo)");
-        System.out.println();
-
         for (turno = 1; heroi.estaVivo() && inimigo.estaVivo(); turno++) {
+            // Layout de status e turno
+            System.out.println("========================================");
+            System.out.println(heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)"
+                    + " (" + heroi.getEscudo() + " de escudo)");
+            System.out.println("vs");
+            System.out.println(inimigo.getNome() + " (" + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima()
+                    + " de vida)" + " (" + inimigo.getEscudo() + " de escudo)");
 
+            System.out.println();
+
+            // Layout Turno
             System.out.println();
             System.out.println("************");
             System.out.println("* Turno: " + turno + " *");
             System.out.println("************");
+
             do {
 
+                // Layout energia e opções de ação
                 System.out.println();
                 System.out.println(heroi.getEnergiaAtual() + "/" + heroi.getEnergiaMaxima() + " de Energia disponível");
                 System.out.println("Escolha uma ação:");
@@ -52,6 +56,7 @@ public class App {
                         break;
                 }
 
+                // Layout de status
                 System.out.println("========================================");
                 System.out.println(
                         heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)"
@@ -67,6 +72,8 @@ public class App {
             if (inimigo.estaVivo()) {
                 inimigo.atacar(heroi);
 
+                // Layout status
+                System.out.println("========================================");
                 System.out.println(heroi.getNome() + " recebeu " + inimigo.getDano() + " de dano");
                 System.out.println("========================================");
                 System.out.println(
@@ -80,7 +87,7 @@ public class App {
                 // Ajustes de fim de turno para o heroi
                 if (heroi.estaVivo()) {
                     // Zera o escudo do heroi
-                    heroi.ganharEscudo(heroi.getEscudo()-heroi.getEscudo());
+                    heroi.ganharEscudo(-heroi.getEscudo());
                     // Reseta a energia do heroi
                     heroi.usarEnergia(heroi.getEnergiaAtual() - heroi.getEnergiaMaxima());
                 }
@@ -89,8 +96,11 @@ public class App {
         }
 
         entrada.close();
-        System.out.println("***************************");
-        System.out.println("Fim");
-        System.out.println("***************************");
+        System.out.println("****************************************");
+        if (heroi.estaVivo())
+            System.out.println("Você ganhou!");
+        else
+            System.out.println("Você perdeu!");
+        System.out.println("****************************************");
     }
 }
