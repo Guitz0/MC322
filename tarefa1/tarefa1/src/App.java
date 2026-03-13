@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        int acao, turno = 1;
+        int acao, turno;
         Scanner entrada = new Scanner(System.in);
 
         // Instanciação das Classes por metodos construtores
@@ -11,55 +11,86 @@ public class App {
         CartaDano cartaDano = new CartaDano("Espada", 1, 5);
         CartaEscudo cartaEscudo = new CartaEscudo("Escudo", 1, 6);
 
-        System.out.println("====================");
-        System.out.println(heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)" + " (" + heroi.getEscudo() + " de escudo)");
+        System.out.println("========================================");
+        System.out.println(heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)"
+                + " (" + heroi.getEscudo() + " de escudo)");
         System.out.println("vs");
-        System.out.println(inimigo.getNome() + " (" + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima() + " de vida)" + " (" + inimigo.getEscudo() + " de escudo)");
+        System.out.println(inimigo.getNome() + " (" + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima()
+                + " de vida)" + " (" + inimigo.getEscudo() + " de escudo)");
         System.out.println();
 
-        while (heroi.estaVivo() && inimigo.estaVivo()) {
-            
-            System.out.println("Turno: " + turno);
-            System.out.println();
-            System.out.println(heroi.getEnergiaAtual() + "/" + heroi.getEnergiaMaxima() + " de Energia disponível");
-            System.out.println("Escolha uma ação:");
-            System.out.println("1 - Usar carta" + cartaDano.getNome());
-            System.out.println("2 - Usar carta" + cartaEscudo.getNome());
-            System.out.println("3 - Encerrar turno");
-            System.out.println("====================");
+        for (turno = 1; heroi.estaVivo() && inimigo.estaVivo(); turno++) {
 
+            System.out.println();
+            System.out.println("************");
+            System.out.println("* Turno: " + turno + " *");
+            System.out.println("************");
             do {
-                
+
+                System.out.println();
+                System.out.println(heroi.getEnergiaAtual() + "/" + heroi.getEnergiaMaxima() + " de Energia disponível");
+                System.out.println("Escolha uma ação:");
+                System.out.println("1 - Usar carta" + cartaDano.getNome());
+                System.out.println("2 - Usar carta" + cartaEscudo.getNome());
+                System.out.println("3 - Encerrar turno");
+                System.out.println("========================================");
+
                 acao = entrada.nextInt();
 
                 switch (acao) {
                     case 1:
                         cartaDano.usar(inimigo);
                         heroi.usarEnergia(cartaDano.getCusto());
-                        System.out.println("Causou dano");
+                        System.out.println(heroi.getNome() + " causou " + cartaDano.getDano() + " dano");
                         break;
                     case 2:
                         cartaEscudo.usar(heroi);
                         heroi.usarEnergia(cartaEscudo.getCusto());
-                        System.out.println("Recebeu escudo");
+                        System.out.println(heroi.getNome() + " recebeu " + cartaEscudo.getEscudo() + " escudo");
                         break;
                     default:
                         break;
                 }
 
-            } while ((heroi.getEnergiaAtual() > 0) && (acao != 3));
+                System.out.println("========================================");
+                System.out.println(
+                        heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)"
+                                + " (" + heroi.getEscudo() + " de escudo)");
+                System.out.println("vs");
+                System.out.println(inimigo.getNome() + " (" + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima()
+                        + " de vida)" + " (" + inimigo.getEscudo() + " de escudo)");
+                System.out.println();
 
-            inimigo.atacar(heroi);
-            System.out.println("Recebeu 6 de dano");
+            } while ((heroi.getEnergiaAtual() > 0) && (acao != 3) && inimigo.estaVivo());
 
-            // Zera o escudo do heroi
-            heroi.ganharEscudo(-heroi.getEscudo());
+            // Turno do inimigo caso nao tenha morrido
+            if (inimigo.estaVivo()) {
+                inimigo.atacar(heroi);
 
-            // Reseta a energia do heroi
-            heroi.usarEnergia(-heroi.getEnergiaMaxima());
-            
+                System.out.println(heroi.getNome() + " recebeu " + inimigo.getDano() + " de dano");
+                System.out.println("========================================");
+                System.out.println(
+                        heroi.getNome() + " (" + heroi.getVidaAtual() + "/" + heroi.getVidaMaxima() + " de vida)"
+                                + " (" + heroi.getEscudo() + " de escudo)");
+                System.out.println("vs");
+                System.out.println(inimigo.getNome() + " (" + inimigo.getVidaAtual() + "/" + inimigo.getVidaMaxima()
+                        + " de vida)" + " (" + inimigo.getEscudo() + " de escudo)");
+                System.out.println();
+
+                // Ajustes de fim de turno para o heroi
+                if (heroi.estaVivo()) {
+                    // Zera o escudo do heroi
+                    heroi.ganharEscudo(heroi.getEscudo()-heroi.getEscudo());
+                    // Reseta a energia do heroi
+                    heroi.usarEnergia(heroi.getEnergiaAtual() - heroi.getEnergiaMaxima());
+                }
+            }
+
         }
+
         entrada.close();
+        System.out.println("***************************");
         System.out.println("Fim");
+        System.out.println("***************************");
     }
 }
