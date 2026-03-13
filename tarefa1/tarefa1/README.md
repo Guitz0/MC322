@@ -1,18 +1,65 @@
-## Getting Started
+Projeto MC322 - Roguelike Deckbuilder
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto foi desenvolvido como parte dos laboratórios da disciplina MC322 - Programação Orientada a Objetos.
+O objetivo é implementar um jogo inspirado em Slay the Spire, no qual o jogador utiliza um baralho de cartas para derrotar inimigos em batalhas por turno.
+O projeto foi desenvolvido em Java e executado via terminal.
+Estrutura do Projeto
 
-## Folder Structure
+O projeto segue a estrutura padrão criada pelo VSCode para projetos Java:
 
-The workspace contains two folders by default, where:
+.
+├─ src/
+│  ├─ App.java
+│  ├─ Heroi.java
+│  ├─ Inimigo.java
+│  ├─ Carta.java
+│  ├─ CartaDano.java
+│  ├─ CartaEscudo.java
+│  └─ ...
+├─ lib/
+├─ bin/
+└─ README.md
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Onde:
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+    src — contém todos os arquivos .java do projeto
+    lib — pasta reservada para dependências externas (não utilizada neste projeto)
+    bin — arquivos .class gerados após a compilação
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Como Compilar o Projeto
 
-## Dependency Management
+No diretório raiz do projeto, execute:
+javac -d bin $(find src -name "*.java")
+Esse comando compila todos os arquivos .java dentro da pasta src e coloca os arquivos compilados (.class) na pasta bin.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Como Executar o Projeto
+
+Após compilar, execute:
+java -cp bin App
+Isso iniciará o programa e o sistema de combate será executado no terminal.
+
+Como Jogar
+
+Durante o combate:
+    O jogador possui um baralho de cartas
+    No início de cada turno, cartas são compradas para a mão
+    Cada carta possui um custo de energia
+    O jogador pode usar cartas enquanto tiver energia disponível
+    Ao final do turno do jogador, os inimigos realizam suas ações
+
+O combate termina quando:
+
+    o herói é derrotado, ou
+    todos os inimigos são derrotados
+
+Tecnologias Utilizadas
+
+    Java 25
+    Visual Studio Code
+    Git e GitHub
+
+Autores
+
+Projeto desenvolvido por:
+
+    Primeiro Guilherme Silva de Paula, RA 115832
