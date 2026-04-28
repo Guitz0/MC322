@@ -2,7 +2,7 @@ public class CartaEscudo extends Carta {
     private int escudo;
 
     public CartaEscudo(String nome, String descricao, int custo, int escudo) {
-        super(nome, descricao, custo)
+        super(nome, descricao, custo);
         this.escudo = escudo;
     }
 
@@ -12,6 +12,7 @@ public class CartaEscudo extends Carta {
 
     @Override
     public void usar(Heroi heroi) {
+        heroi.usarEnergia(custo);
         heroi.ganharEscudo(escudo);
     }
 }

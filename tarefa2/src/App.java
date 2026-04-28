@@ -6,10 +6,10 @@ public class App {
         Scanner entrada = new Scanner(System.in);
 
         // Instanciação das Classes por metodos construtores
-        Heroi heroi = new Heroi("Guerreiro", 30, 3);
+        Heroi heroi = new Heroi("Guerreiro", 30, 0, 3);
         Inimigo inimigo = new Inimigo("Rato", 12, 0, 6);
-        CartaDano cartaDano = new CartaDano("Espada", 1, 5);
-        CartaEscudo cartaEscudo = new CartaEscudo("Escudo", 1, 6);
+        CartaDano cartaDano = new CartaDano("Espada", "Ataca o inimigo com uma espada", 1, 5);
+        CartaEscudo cartaEscudo = new CartaEscudo("Escudo", "Ergue um escudo e se protege", 1, 6);
 
         for (turno = 1; heroi.estaVivo() && inimigo.estaVivo(); turno++) {
             // Layout de status e turno
@@ -43,13 +43,11 @@ public class App {
 
                 switch (acao) {
                     case 1:
-                        cartaDano.usar(inimigo);
-                        heroi.usarEnergia(cartaDano.getCusto());
+                        cartaDano.usar(heroi, inimigo);
                         System.out.println(heroi.getNome() + " causou " + cartaDano.getDano() + " dano");
                         break;
                     case 2:
                         cartaEscudo.usar(heroi);
-                        heroi.usarEnergia(cartaEscudo.getCusto());
                         System.out.println(heroi.getNome() + " recebeu " + cartaEscudo.getEscudo() + " escudo");
                         break;
                     default:
